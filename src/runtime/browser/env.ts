@@ -1,4 +1,4 @@
-export function isCloudflareWorkers(): boolean {
+export function isCloudflareWorkers() {
   // @ts-expect-error
   return typeof WebSocketPair === 'function'
 }
