@@ -1,4 +1,10 @@
 export function isCloudflareWorkers(): boolean {
-  // @ts-expect-error
-  return typeof WebSocketPair === 'function'
+  return (
+    // @ts-expect-error
+    typeof WebSocketPair !== 'undefined' ||
+    // @deno-expect-error
+    (typeof navigator !== 'undefined' && navigator.userAgent === 'Cloudflare-Workers') ||
+    // @ts-expect-error
+    (typeof EdgeRuntime !== 'undefined' && EdgeRuntime === 'vercel')
+  )
 }
